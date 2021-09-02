@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  kedro:
+    build:
+      context: .
+    volumes:
+      - $PWD:/usr/src/app
+    ports:
+      - '4141:4141'
+      - '8888:8888'
