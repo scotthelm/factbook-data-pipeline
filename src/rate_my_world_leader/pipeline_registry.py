@@ -31,6 +31,7 @@ from typing import Dict
 
 from kedro.pipeline import Pipeline
 from rate_my_world_leader.pipelines import pre_data_processing as pdp
+from rate_my_world_leader.pipelines import data_processing as dp
 
 def register_pipelines() -> Dict[str, Pipeline]:
     """Register the project's pipelines.
@@ -40,7 +41,10 @@ def register_pipelines() -> Dict[str, Pipeline]:
     """
 
     pre_data_processing_pipeline = pdp.create_pipeline()
+    data_processing_pipeline = dp.create_pipeline()
+
     return {
-        "__default__": pre_data_processing_pipeline,
-        "dp": pre_data_processing_pipeline,
+        "__default__": data_processing_pipeline,
+        "pdp": pre_data_processing_pipeline,
+        "dp": data_processing_pipeline,
     }

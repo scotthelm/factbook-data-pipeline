@@ -28,13 +28,19 @@
 
 """Project hooks."""
 from typing import Any, Dict, Iterable, Optional
+from typing_extensions import ParamSpec
+import pandas as pd
 
 from kedro.config import ConfigLoader
 from kedro.framework.hooks import hook_impl
 from kedro.io import DataCatalog
 from kedro.versioning import Journal
 from kedro.pipeline.node import Node
+from kedro.pipeline import Pipeline
+from kedro.extras.datasets.api import APIDataSet
+from kedro.extras.datasets.json import JSONDataSet
 
+from rate_my_world_leader.pipelines.pre_data_processing.nodes import convert_api_to_json
 
 
 class ProjectHooks:
@@ -65,3 +71,28 @@ class ProjectHooks:
     @hook_impl
     def before_node_run(self, node: Node):
         self.say_hello(node=node)
+
+    @hook_impl
+    def before_pipeline_run(
+        self,
+        pipeline: Pipeline,
+        catalog: DataCatalog
+    ):
+        geo_codes = self.load_geo_codes()
+        self.create_datasets(geo_codes, catalog)
+        print(catalog.list())
+
+    def load_geo_codes(self):
+        df = pd.read_csv('conf/base/factbook_codes_normalized.csv')
+        return df
+
+    def create_datasets(self, geo_codes: pd.DataFrame, catalog: DataCatalog):
+        for _index, row in geo_codes.iterrows():
+            catalog.add(
+                f'{row["code"]}_api_dataset',
+                APIDataSet(url=row['github_url'])
+            )
+            catalog.add(
+                f'{row["code"]}_json_dataset',
+                JSONDataSet(filepath=f'data/01_raw/{row["code"]}_data.json')
+            )
