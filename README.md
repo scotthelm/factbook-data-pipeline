@@ -1,5 +1,16 @@
-# Rate My World Leader
+# Factbook Data Pipeline
 
+This repository is for collecting, normalizing, cleaning, and standardizing CIA World Factbook data.
+
+The data that is processed in this pipeline is sourced from the [factbook.json](https://github.com/factbook/factbook.json)
+ project. Their work is invaluable in this process. Every week, they produce a new set of data that is sourced from the CIA World Factbook site (which is a difficult datasource to pull from)
+
+ The goal of this pipeline is to:
+
+ * collect the source data
+ * standardize and clean the json data into tabular form for query and analysis
+ * publish the data so other processes can pick it up
+ 
 ## Prerequisites
 
 * Docker
@@ -10,6 +21,7 @@
 
 ```sh
 nib build --pull
+nib run kedro run --pipeline=pdp
 ```
 
 ## Usage Examples

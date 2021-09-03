@@ -12,7 +12,7 @@ factbook_codes:
 
 factbook_codes_normalized:
   type: pandas.CSVDataSet
-  filepath: data/02_intermediate/factbook_codes_normalized.csv
+  filepath: conf/local/factbook_codes_normalized.csv
 
 factbook_codesxref_api:
   type: api.APIDataSet

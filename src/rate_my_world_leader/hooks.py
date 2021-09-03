@@ -30,6 +30,7 @@
 from typing import Any, Dict, Iterable, Optional
 from typing_extensions import ParamSpec
 import pandas as pd
+import os.path
 
 from kedro.config import ConfigLoader
 from kedro.framework.hooks import hook_impl
@@ -83,7 +84,10 @@ class ProjectHooks:
         print(catalog.list())
 
     def load_geo_codes(self):
-        df = pd.read_csv('conf/base/factbook_codes_normalized.csv')
+        if os.path.isfile('conf/local/factbook_codes_normalized.csv'):
+            df = pd.read_csv('conf/local/factbook_codes_normalized.csv')
+        else:
+            df = pd.DataFrame()
         return df
 
     def create_datasets(self, geo_codes: pd.DataFrame, catalog: DataCatalog):
