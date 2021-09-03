@@ -2,9 +2,22 @@
 #
 # Documentation for this file format can be found in "The Data Catalog"
 # Link: https://kedro.readthedocs.io/en/stable/05_data/01_data_catalog.html
+factbook_codes_api:
+  type: api.APIDataSet
+  url: "https://raw.githubusercontent.com/factbook/factbook/master/factbook-codes/data/codes.csv"
+
+factbook_codes:
+  type: pandas.CSVDataSet
+  filepath: data/01_raw/factbook_codes.csv
+
+factbook_codes_normalized:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/factbook_codes_normalized.csv
+
 factbook_codesxref_api:
   type: api.APIDataSet
   url: "https://raw.githubusercontent.com/factbook/factbook/master/factbook-codes/data/codesxref.csv"
+
 factbook_codesxref:
   type: pandas.CSVDataSet
   filepath: data/01_raw/factbook_codesxref.csv
