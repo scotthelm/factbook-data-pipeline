@@ -33,6 +33,8 @@ from kedro.config import ConfigLoader
 from kedro.framework.hooks import hook_impl
 from kedro.io import DataCatalog
 from kedro.versioning import Journal
+from kedro.pipeline.node import Node
+
 
 
 class ProjectHooks:
@@ -54,3 +56,12 @@ class ProjectHooks:
         return DataCatalog.from_config(
             catalog, credentials, load_versions, save_version, journal
         )
+
+    def say_hello(self, node: Node):
+        """An extra behaviour for a node to say hello before running.
+        """
+        print(f"Hello from {node.name}")
+
+    @hook_impl
+    def before_node_run(self, node: Node):
+        self.say_hello(node=node)
