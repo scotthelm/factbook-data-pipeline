@@ -5,11 +5,12 @@ This repository is for collecting, normalizing, cleaning, and standardizing CIA 
 The data that is processed in this pipeline is sourced from the [factbook.json](https://github.com/factbook/factbook.json)
  project. Their work is invaluable in this process. Every week, they produce a new set of data that is sourced from the CIA World Factbook site (which is a difficult datasource to pull from)
 
- The goal of this pipeline is to:
+ The goal of these pipelines is to:
 
- * collect the source data
- * standardize and clean the json data into tabular form for query and analysis
- * publish the data so other processes can pick it up
+* pdp: "pre_data_processing" - get data from factbook to set up dynamic dataset and node creation
+* df: "data_fetching" - fetch the source data from github using api and json datasets
+* dp: "data_processing" - standardize and clean the json data into tabular form for query and analysis
+* publish the data so other processes can pick it up
  
 ## Prerequisites
 
