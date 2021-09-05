@@ -40,6 +40,7 @@ from kedro.pipeline.node import Node
 from kedro.pipeline import Pipeline
 from kedro.extras.datasets.api import APIDataSet
 from kedro.extras.datasets.json import JSONDataSet
+from kedro.extras.datasets.pandas import CSVDataSet
 
 from rate_my_world_leader.pipelines.pre_data_processing.nodes import convert_api_to_json
 
@@ -99,4 +100,8 @@ class ProjectHooks:
             catalog.add(
                 f'{row["code"]}_json_dataset',
                 JSONDataSet(filepath=f'data/01_raw/{row["code"]}_data.json')
+            )
+            catalog.add(
+                f'{row["code"]}_intermediate_csv_dataset',
+                CSVDataSet(filepath=f'data/02_intermediate/{row["code"]}_intermediate.csv')
             )
