@@ -22,4 +22,6 @@ factbook_codesxref:
   type: pandas.CSVDataSet
   filepath: data/01_raw/factbook_codesxref.csv
 
-  
+normalized_bronze_data:
+  type: pandas.CSVDataSet
+  filepath: data/03_primary/normalized_bronze_data.csv

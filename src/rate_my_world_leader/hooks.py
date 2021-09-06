@@ -61,9 +61,12 @@ class ProjectHooks:
         save_version: str,
         journal: Journal,
     ) -> DataCatalog:
-        return DataCatalog.from_config(
+        the_catalog = DataCatalog.from_config(
             catalog, credentials, load_versions, save_version, journal
         )
+        geo_codes = self.load_geo_codes()
+        self.create_datasets(geo_codes, the_catalog)
+        return the_catalog
 
     def say_hello(self, node: Node):
         """An extra behaviour for a node to say hello before running.
@@ -73,16 +76,6 @@ class ProjectHooks:
     @hook_impl
     def before_node_run(self, node: Node):
         self.say_hello(node=node)
-
-    @hook_impl
-    def before_pipeline_run(
-        self,
-        pipeline: Pipeline,
-        catalog: DataCatalog
-    ):
-        geo_codes = self.load_geo_codes()
-        self.create_datasets(geo_codes, catalog)
-        print(catalog.list())
 
     def load_geo_codes(self):
         if os.path.isfile('conf/local/factbook_codes_normalized.csv'):

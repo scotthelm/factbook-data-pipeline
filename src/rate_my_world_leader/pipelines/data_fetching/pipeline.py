@@ -1,7 +1,7 @@
 from typing import List
 import pandas as pd
-import os.path
 from kedro.pipeline import Pipeline, node
+from rate_my_world_leader.utils import load_geo_codes
 from .nodes import(
     convert_api_to_json
 )
@@ -10,13 +10,6 @@ def create_pipeline(**kwargs):
     geo_codes = load_geo_codes()
     nodes = create_nodes(geo_codes)
     return Pipeline(nodes)
-
-def load_geo_codes():
-    if os.path.isfile('conf/local/factbook_codes_normalized.csv'):
-        df = pd.read_csv('conf/local/factbook_codes_normalized.csv')
-    else:
-        df = pd.DataFrame()
-    return df
 
 def create_nodes(geo_codes: pd.DataFrame) -> List:
     nodes = []
