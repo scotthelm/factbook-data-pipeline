@@ -9,7 +9,7 @@ def convert_api_to_csv_dataset(
 ) -> pd.DataFrame:
     str_response = api_dataset.content.decode('utf-8')
     df = pd.read_csv(StringIO(str_response))
-    return df
+    return df.loc[df['Category'] == 'Countries']
 
 def normalize_factbook_codes(
     codes_dataset: pd.DataFrame

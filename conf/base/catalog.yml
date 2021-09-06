@@ -14,14 +14,6 @@ factbook_codes_normalized:
   type: pandas.CSVDataSet
   filepath: conf/local/factbook_codes_normalized.csv
 
-factbook_codesxref_api:
-  type: api.APIDataSet
-  url: "https://raw.githubusercontent.com/factbook/factbook/master/factbook-codes/data/codesxref.csv"
-
-factbook_codesxref:
-  type: pandas.CSVDataSet
-  filepath: data/01_raw/factbook_codesxref.csv
-
 normalized_bronze_data:
   type: pandas.CSVDataSet
   filepath: data/03_primary/normalized_bronze_data.csv

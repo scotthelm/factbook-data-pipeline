@@ -49,8 +49,8 @@ def register_pipelines() -> Dict[str, Pipeline]:
     data_processing_bronze_pipeline = dpb.create_pipeline()
     data_processing_pipeline = Pipeline(
         [
-            pipeline(data_fetching_pipeline, outputs=fetching_outputs()),
-            pipeline(data_processing_intermediate_pipeline, inputs=fetching_outputs(), outputs=intermediate_outputs()),
+            # pipeline(data_fetching_pipeline, outputs=fetching_outputs()),
+            # pipeline(data_processing_intermediate_pipeline, inputs=fetching_outputs(), outputs=intermediate_outputs()),
             pipeline(data_processing_bronze_pipeline, inputs=intermediate_outputs())
         ]
     )
