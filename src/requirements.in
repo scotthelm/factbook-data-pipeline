@@ -15,6 +15,7 @@ jupyter~=1.0
 kedro-viz
 kedro==0.17.2
 kedro[pandas]==0.17.2
+matplotlib
 nbstripout==0.3.3
 psycopg2
 pytest-cov~=2.5
