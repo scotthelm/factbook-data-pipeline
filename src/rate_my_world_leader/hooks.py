@@ -103,3 +103,6 @@ class ProjectHooks:
             'combined_bronze_dataset',
             CSVDataSet(filepath='data/03_primary/combined_bronze.csv')
         )
+    @hook_impl
+    def before_pipeline_run(self, pipeline: Pipeline):
+        print(pipeline.data_sets())

@@ -29,11 +29,12 @@
 """Project pipelines."""
 from typing import Dict
 
-from kedro.pipeline import Pipeline
-from rate_my_world_leader.pipelines import pre_data_processing as pdp
+from kedro.pipeline import Pipeline, pipeline
+from rate_my_world_leader.pipelines import data_processing_bronze, pre_data_processing as pdp
 from rate_my_world_leader.pipelines import data_fetching as df
 from rate_my_world_leader.pipelines import data_processing_intermediate as dpi
 from rate_my_world_leader.pipelines import data_processing_bronze as dpb
+from rate_my_world_leader.utils import load_geo_codes
 
 def register_pipelines() -> Dict[str, Pipeline]:
     """Register the project's pipelines.
@@ -46,11 +47,34 @@ def register_pipelines() -> Dict[str, Pipeline]:
     data_fetching_pipeline = df.create_pipeline()
     data_processing_intermediate_pipeline = dpi.create_pipeline()
     data_processing_bronze_pipeline = dpb.create_pipeline()
+    data_processing_pipeline = Pipeline(
+        [
+            pipeline(data_fetching_pipeline, outputs=fetching_outputs()),
+            pipeline(data_processing_intermediate_pipeline, inputs=fetching_outputs(), outputs=intermediate_outputs()),
+            pipeline(data_processing_bronze_pipeline, inputs=intermediate_outputs())
+        ]
+    )
 
     return {
-        "__default__": data_processing_bronze_pipeline,
+        "__default__": data_processing_pipeline,
         "pdp": pre_data_processing_pipeline,
         "df": data_fetching_pipeline,
         "dpi": data_processing_intermediate_pipeline,
         "dpb": data_processing_bronze_pipeline,
     }
+
+def intermediate_outputs() -> list:
+    inputs = []
+    for _index, row in load_geo_codes().iterrows():
+        inputs.append(
+            f'{row["code"]}_intermediate_csv_dataset'
+        )
+    return inputs
+
+def fetching_outputs() -> list:
+    inputs = []
+    for _index, row in load_geo_codes().iterrows():
+        inputs.append(
+            f'{row["code"]}_json_dataset'
+        )
+    return inputs
