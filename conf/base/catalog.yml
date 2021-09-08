@@ -14,6 +14,14 @@ factbook_codes_normalized:
   type: pandas.CSVDataSet
   filepath: conf/local/factbook_codes_normalized.csv
 
-normalized_bronze_data:
+unfiltered_bronze_dataset:
   type: pandas.CSVDataSet
-  filepath: data/03_primary/normalized_bronze_data.csv
+  filepath: data/03_primary/unfiltered_bronze.csv
+
+bronze_column_analysis_dataset:
+  type: pandas.CSVDataSet
+  filepath: data/03_primary/bronze_column_analysis.csv
+
+filtered_bronze_dataset:
+  type: pandas.CSVDataSet
+  filepath: data/03_primary/filtered_bronze.csv

@@ -98,11 +98,7 @@ class ProjectHooks:
                 f'{row["code"]}_intermediate_csv_dataset',
                 CSVDataSet(filepath=f'data/02_intermediate/{row["code"]}_intermediate.csv')
             )
-        
-        catalog.add(
-            'combined_bronze_dataset',
-            CSVDataSet(filepath='data/03_primary/combined_bronze.csv')
-        )
-    @hook_impl
-    def before_pipeline_run(self, pipeline: Pipeline):
-        print(pipeline.data_sets())
+
+    # @hook_impl
+    # def before_pipeline_run(self, pipeline: Pipeline):
+    #     print(pipeline.data_sets())
