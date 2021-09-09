@@ -27,7 +27,7 @@
 # limitations under the License.
 
 """Project settings."""
-from rate_my_world_leader.hooks import ProjectHooks
+from factbook_data_pipeline.hooks import ProjectHooks
 
 # Instantiate and list your project hooks here
 HOOKS = (ProjectHooks(),)

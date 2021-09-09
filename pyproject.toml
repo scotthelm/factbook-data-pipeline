@@ -1,6 +1,6 @@
 [tool.kedro]
-package_name = "rate_my_world_leader"
-project_name = "Rate My World Leader"
+package_name = "factbook_data_pipeline"
+project_name = "Factbook Data Pipeline"
 project_version = "0.17.2"
 
 [tool.isort]
@@ -14,7 +14,7 @@ known_third_party = "kedro"
 [tool.pytest.ini_options]
 addopts = """
 --cov-report term-missing \
---cov src/rate_my_world_leader -ra"""
+--cov src/factbook_data_pipeline -ra"""
 
 [tool.black]
 line-length = 80

@@ -1,0 +1,23 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "kedro ipython",
+            "type": "shell",
+            "command": "nib run kedro ipython"
+        },
+        {
+            "label": "kedro jupyter",
+            "type": "shell",
+            "command": "nib run --service-ports kedro jupyter notebook --allow-root --ip 0.0.0.0",
+            "problemMatcher": []
+        },
+        {
+            "label": "kedro run default",
+            "type": "shell",
+            "command": "nib run --service-ports kedro run"
+        }
+    ]
+}

@@ -1,6 +1,6 @@
 FROM python:3.8.11-buster as builder
 
-ENV PROJECT_NAME rate_my_world_leader
+ENV PROJECT_NAME factbook_data_pipeline
 ENV PROJECT_PATH src/${PROJECT_NAME}
 
 COPY requirements.txt /tmp/requirements.txt

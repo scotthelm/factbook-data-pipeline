@@ -42,7 +42,7 @@ from kedro.extras.datasets.api import APIDataSet
 from kedro.extras.datasets.json import JSONDataSet
 from kedro.extras.datasets.pandas import CSVDataSet
 
-from rate_my_world_leader.pipelines.pre_data_processing.nodes import convert_api_to_json
+from factbook_data_pipeline.pipelines.pre_data_processing.nodes import convert_api_to_json
 
 
 class ProjectHooks:

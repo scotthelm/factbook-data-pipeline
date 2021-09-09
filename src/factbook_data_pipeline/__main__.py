@@ -25,8 +25,8 @@
 #
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Rate My World Leader file for ensuring the package is executable
-as `rate-my-world-leader` and `python -m rate_my_world_leader`
+"""Factbook Data Pipeline file for ensuring the package is executable
+as `factbook-data-pipeline` and `python -m factbook_data_pipeline`
 """
 from pathlib import Path
 

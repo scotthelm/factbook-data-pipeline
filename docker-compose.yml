@@ -9,3 +9,9 @@ services:
     ports:
       - '4141:4141'
       - '8888:8888'
+  db:
+    image: postgres:13-alpine
+    ports:
+      - '54323:5432'
+    environment:
+      POSTGRES_PASSWORD: docker

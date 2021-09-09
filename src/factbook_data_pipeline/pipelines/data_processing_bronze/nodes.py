@@ -1,7 +1,7 @@
 from pandas.core.frame import DataFrame
 from kedro.framework.session import get_current_session
 from kedro.extras.datasets.pandas import CSVDataSet
-from rate_my_world_leader.utils import load_geo_codes
+from factbook_data_pipeline.utils import load_geo_codes
 import pandas as pd
 
 def combine(*argv) -> pd.DataFrame:

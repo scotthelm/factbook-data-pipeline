@@ -29,7 +29,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# rate_my_world_leader documentation build
+# factbook_data_pipeline documentation build
 # configuration file, created by sphinx-quickstart.
 #
 # This file is execfile()d with the current directory set to its
@@ -50,11 +50,11 @@ import re
 from kedro.framework.cli.utils import find_stylesheets
 from recommonmark.transform import AutoStructify
 
-from rate_my_world_leader import __version__ as release
+from factbook_data_pipeline import __version__ as release
 
 # -- Project information -----------------------------------------------------
 
-project = "rate_my_world_leader"
+project = "factbook_data_pipeline"
 copyright = "2021, QuantumBlack Visual Analytics Limited"
 author = "QuantumBlack"
 
@@ -149,7 +149,7 @@ html_show_sourcelink = False
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = "rate_my_world_leaderdoc"
+htmlhelp_basename = "factbook_data_pipeline"
 
 # -- Options for LaTeX output ------------------------------------------------
 
@@ -177,8 +177,8 @@ latex_elements = {
 latex_documents = [
     (
         master_doc,
-        "rate_my_world_leader.tex",
-        "rate_my_world_leader Documentation",
+        "factbook_data_pipeline.tex",
+        "factbook_data_pipeline Documentation",
         "QuantumBlack",
         "manual",
     )
@@ -191,8 +191,8 @@ latex_documents = [
 man_pages = [
     (
         master_doc,
-        "rate_my_world_leader",
-        "rate_my_world_leader Documentation",
+        "factbook_data_pipeline",
+        "factbook_data_pipeline Documentation",
         [author],
         1,
     )
@@ -206,11 +206,11 @@ man_pages = [
 texinfo_documents = [
     (
         master_doc,
-        "rate_my_world_leader",
-        "rate_my_world_leader Documentation",
+        "factbook_data_pipeline",
+        "factbook_data_pipeline Documentation",
         author,
-        "rate_my_world_leader",
-        "Project rate_my_world_leader codebase.",
+        "factbook_data_pipeline",
+        "Project factbook_data_pipeline codebase.",
         "Data-Science",
     )
 ]

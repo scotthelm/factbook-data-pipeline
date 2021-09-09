@@ -30,11 +30,11 @@
 from typing import Dict
 
 from kedro.pipeline import Pipeline, pipeline
-from rate_my_world_leader.pipelines import data_processing_bronze, pre_data_processing as pdp
-from rate_my_world_leader.pipelines import data_fetching as df
-from rate_my_world_leader.pipelines import data_processing_intermediate as dpi
-from rate_my_world_leader.pipelines import data_processing_bronze as dpb
-from rate_my_world_leader.utils import load_geo_codes
+from factbook_data_pipeline.pipelines import data_processing_bronze, pre_data_processing as pdp
+from factbook_data_pipeline.pipelines import data_fetching as df
+from factbook_data_pipeline.pipelines import data_processing_intermediate as dpi
+from factbook_data_pipeline.pipelines import data_processing_bronze as dpb
+from factbook_data_pipeline.utils import load_geo_codes
 
 def register_pipelines() -> Dict[str, Pipeline]:
     """Register the project's pipelines.
