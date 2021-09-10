@@ -30,7 +30,7 @@
 from typing import Dict
 
 from kedro.pipeline import Pipeline, pipeline
-from factbook_data_pipeline.pipelines import data_processing_bronze, pre_data_processing as pdp
+from factbook_data_pipeline.pipelines import pre_data_processing as pdp
 from factbook_data_pipeline.pipelines import data_fetching as df
 from factbook_data_pipeline.pipelines import data_processing_intermediate as dpi
 from factbook_data_pipeline.pipelines import data_processing_bronze as dpb

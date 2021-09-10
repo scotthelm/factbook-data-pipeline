@@ -11,7 +11,9 @@ The data that is processed in this pipeline is sourced from the [factbook.json](
 * df: "data_fetching" - fetch the source data from github using api and json datasets
 * dp: "data_processing" - standardize and clean the json data into tabular form for query and analysis
 * publish the data so other processes can pick it up
- 
+
+The origin of this project is as a learning exercise for myself. I wanted to learn how to use kedro to collect data, and make that data available for further refinement/model building/model execution. This particular dataset perhaps does not lend itself well to predictive analytics or machine learning, as the volume is low. However, the exercise of gathering data from various sources and synthesizing it into another form is instructive for me.
+
 ## Prerequisites
 
 * Docker
