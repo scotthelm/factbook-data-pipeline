@@ -34,7 +34,7 @@ import os.path
 
 from kedro.config import ConfigLoader
 from kedro.framework.hooks import hook_impl
-from kedro.io import DataCatalog
+from kedro.io import DataCatalog, MemoryDataSet
 from kedro.versioning import Journal
 from kedro.pipeline.node import Node
 from kedro.pipeline import Pipeline
@@ -97,6 +97,10 @@ class ProjectHooks:
             catalog.add(
                 f'{row["code"]}_intermediate_csv_dataset',
                 CSVDataSet(filepath=f'data/02_intermediate/{row["code"]}_intermediate.csv')
+            )
+            catalog.add(
+                f'{row["code"]}_name_dataset',
+                MemoryDataSet(data=row["name"])
             )
 
     # @hook_impl

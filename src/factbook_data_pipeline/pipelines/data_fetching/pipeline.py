@@ -17,7 +17,7 @@ def create_nodes(geo_codes: pd.DataFrame) -> List:
         nodes.append(
             node(
                 func=convert_api_to_json,
-                inputs=f'{row["code"]}_api_dataset',
+                inputs=[f'{row["code"]}_api_dataset', f'{row["code"]}_name_dataset'],
                 outputs=f'{row["code"]}_json_dataset',
                 name=f'convert_{row["code"]}_api_to_json'
             )
