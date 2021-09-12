@@ -25,11 +25,5 @@ def create_pipeline(**kwargs):
             inputs=['unfiltered_bronze_dataset', 'bronze_column_analysis_dataset'],
             outputs='filtered_bronze_dataset',
             name='filter_bronze_dataset_columns'
-        ),
-        node(
-            func=lambda x: x,
-            inputs='filtered_bronze_dataset',
-            outputs='filtered_bronze_table_dataset',
-            name='persist_in_sql_table',
         )
     ])

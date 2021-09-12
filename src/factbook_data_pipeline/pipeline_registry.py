@@ -31,9 +31,10 @@ from typing import Dict
 
 from kedro.pipeline import Pipeline, pipeline
 from factbook_data_pipeline.pipelines import pre_data_processing as pdp
-from factbook_data_pipeline.pipelines import data_fetching as df
+from factbook_data_pipeline.pipelines import data_fetching as dfp
 from factbook_data_pipeline.pipelines import data_processing_intermediate as dpi
 from factbook_data_pipeline.pipelines import data_processing_bronze as dpb
+from factbook_data_pipeline.pipelines import data_processing_silver as dps
 from factbook_data_pipeline.utils import load_geo_codes
 
 def register_pipelines() -> Dict[str, Pipeline]:
@@ -44,14 +45,31 @@ def register_pipelines() -> Dict[str, Pipeline]:
     """
 
     pre_data_processing_pipeline = pdp.create_pipeline()
-    data_fetching_pipeline = df.create_pipeline()
+    data_fetching_pipeline = dfp.create_pipeline()
     data_processing_intermediate_pipeline = dpi.create_pipeline()
     data_processing_bronze_pipeline = dpb.create_pipeline()
+    data_processing_silver_pipeline = dps.create_pipeline()
     data_processing_pipeline = Pipeline(
         [
-            pipeline(data_fetching_pipeline, outputs=fetching_outputs()),
-            pipeline(data_processing_intermediate_pipeline, inputs=fetching_outputs(), outputs=intermediate_outputs()),
-            pipeline(data_processing_bronze_pipeline, inputs=intermediate_outputs())
+            pipeline(
+                data_fetching_pipeline,
+                outputs=fetching_outputs()
+            ),
+            pipeline(
+                data_processing_intermediate_pipeline,
+                inputs=fetching_outputs(),
+                outputs=intermediate_outputs()
+            ),
+            pipeline(
+                data_processing_bronze_pipeline,
+                inputs=intermediate_outputs(),
+                outputs='filtered_bronze_dataset'
+            ),
+            pipeline(
+                data_processing_silver_pipeline,
+                inputs=['filtered_bronze_dataset', 'field_cleaning_dataset'],
+                outputs='silver_csv_dataset'
+            ),
         ]
     )
 
@@ -61,6 +79,7 @@ def register_pipelines() -> Dict[str, Pipeline]:
         "dfp": data_fetching_pipeline,
         "dpi": data_processing_intermediate_pipeline,
         "dpb": data_processing_bronze_pipeline,
+        "dps": data_processing_silver_pipeline,
     }
 
 def intermediate_outputs() -> list:

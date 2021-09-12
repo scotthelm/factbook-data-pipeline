@@ -47,7 +47,8 @@ The following pipelines
   * creates column analysis file
   * shortens and renames columns for storage in sql
   * writes data to a postgres table
-
+* dps - data_processing_silver
+  * produces new columns with regex-cleaned data
 
 ## Usage Examples
 

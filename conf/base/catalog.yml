@@ -25,6 +25,15 @@ bronze_column_analysis_dataset:
 filtered_bronze_dataset:
   type: pandas.CSVDataSet
   filepath: data/03_primary/filtered_bronze.csv
+
+field_cleaning_dataset:
+  type: kedro.extras.datasets.yaml.YAMLDataSet
+  filepath: conf/base/field_cleaning.yml
+
+silver_csv_dataset:
+  type: pandas.CSVDataSet
+  filepath: data/03_primary/silver_dataset.csv
+
 filtered_bronze_table_dataset:
   type: pandas.SQLTableDataSet
   table_name: factbook_data_bronze
