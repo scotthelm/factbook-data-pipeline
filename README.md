@@ -5,12 +5,7 @@ This repository is for collecting, normalizing, cleaning, and standardizing CIA 
 The data that is processed in this pipeline is sourced from the [factbook.json](https://github.com/factbook/factbook.json)
  project. Their work is invaluable in this process. Every week, they produce a new set of data that is sourced from the CIA World Factbook site (which is a difficult datasource to pull from)
 
- The goal of these pipelines is to:
-
-* pdp: "pre_data_processing" - get data from factbook to set up dynamic dataset and node creation
-* df: "data_fetching" - fetch the source data from github using api and json datasets
-* dp: "data_processing" - standardize and clean the json data into tabular form for query and analysis
-* publish the data so other processes can pick it up
+The goal of the pipelines is to create a dataset that has been cleaned to allow quantitative analysis of country data.
 
 The origin of this project is as a learning exercise for myself. I wanted to learn how to use kedro to collect data, and make that data available for further refinement/model building/model execution. This particular dataset perhaps does not lend itself well to predictive analytics or machine learning, as the volume is low. However, the exercise of gathering data from various sources and synthesizing it into another form is instructive for me.
 
@@ -23,9 +18,36 @@ The origin of this project is as a learning exercise for myself. I wanted to lea
 ## Setup
 
 ```sh
+# build the image locally
 nib build --pull
+# set up the database and fetch/create config data
+nib up -d db && \
+sleep 2 && \
+psql postgresql://postgres:docker@localhost:54323/postgres \
+    -c 'create database factbook_data' && \
 nib run kedro run --pipeline=pdp
 ```
+
+## Pipelines
+
+The following pipelines
+
+* __default__ - dfp + dpi + dpb
+* pdp - pre_data_processing
+  * fetches country code data 
+  * builds links to factbook data
+  * stores configuration in conf/local
+* dfp - data_fetching_pipeline
+  * fetches raw data using configured links
+  * stores country json files in data/01_primary
+* dpi - data_processing_intermediate_pipeline
+  * creates csv files of flattened json
+* dpb - data_processing_bronze
+  * combines individual country datasets in to a single dataset
+  * creates column analysis file
+  * shortens and renames columns for storage in sql
+  * writes data to a postgres table
+
 
 ## Usage Examples
 

@@ -25,3 +25,11 @@ bronze_column_analysis_dataset:
 filtered_bronze_dataset:
   type: pandas.CSVDataSet
   filepath: data/03_primary/filtered_bronze.csv
+filtered_bronze_table_dataset:
+  type: pandas.SQLTableDataSet
+  table_name: factbook_data_bronze
+  save_args:
+    if_exists: replace
+  # credentials: filtered_bronze_table_credentials
+  credentials:
+    con: postgresql://postgres:docker@db:5432/factbook_data

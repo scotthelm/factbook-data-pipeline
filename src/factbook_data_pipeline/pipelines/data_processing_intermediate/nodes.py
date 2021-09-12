@@ -14,7 +14,13 @@ def convert_json_to_dataframe(json_data: dict) -> pd.DataFrame:
             lambda x: re.sub(
                 r'\W',
                 '',
-                x.lower().replace('.text', '').replace(' ', '_').replace('.', '_').replace('-', '_').replace('___', '_'))
+                x.lower()
+                .replace('.text', '')
+                .replace(' ', '_')
+                .replace('.', '_')
+                .replace('-', '_')
+                .replace('___', '_')
+                .replace('.1', ''))
                 , original_columns
         )
     )

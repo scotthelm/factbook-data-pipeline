@@ -58,7 +58,7 @@ def register_pipelines() -> Dict[str, Pipeline]:
     return {
         "__default__": data_processing_pipeline,
         "pdp": pre_data_processing_pipeline,
-        "df": data_fetching_pipeline,
+        "dfp": data_fetching_pipeline,
         "dpi": data_processing_intermediate_pipeline,
         "dpb": data_processing_bronze_pipeline,
     }
