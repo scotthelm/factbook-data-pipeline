@@ -1,31 +1,39 @@
 field_cleaning:
   area_total:
-    replacement_regex:
+    regex_replacement:
       - \(.+\)
       - ;.+
       - "[a-z A-Z,]"
     rename_to: area_total_sq_km
   area_land:
-    replacement_regex:
+    regex_replacement:
       - \(.+\)
       - ;.+
       - "[a-z A-Z,]"
     rename_to: area_land_sq_km
   area_water:
-    replacement_regex:
+    regex_replacement:
       - \(.+\)
       - ;.+
       - "[a-z A-Z,]"
     rename_to: area_water_sq_km
   land_boundaries_total:
-    replacement_regex:
+    regex_replacement:
       - \(.+\)
       - ;.+
       - "[a-z A-Z,]"
     rename_to: land_boundaries_total_km
   coastline:
-    replacement_regex:
+    regex_replacement:
       - \(.+\)
       - ;.+
       - "[a-z A-Z,]"
     rename_to: coastline_km
+  elevation_highest_point:
+    tokenize_and_split_fields:
+      split_point: -2
+      left_field_name: "elevation_highest_point_name"
+      right_field_name: "elevation_highest_point_m"
+      left_join_character: " "
+      right_join_character: ""
+  

@@ -1,6 +1,5 @@
 import pandas as pd
-import re
-from kedro.extras.datasets.yaml import YAMLDataSet
+from factbook_data_pipeline.cleaning import clean
 
 
 def clean_columns(
@@ -9,16 +8,6 @@ def clean_columns(
 ) -> pd.DataFrame:
     for key in cleaning_config['field_cleaning']:
         config = cleaning_config['field_cleaning'][key]
-        to_clean[config['rename_to']] = to_clean.apply(
-            lambda x: clean(x[key], config['replacement_regex']),
-            axis=1
-        )
-    return to_clean
 
-def clean(value: str, regexes: list) -> str:
-    if not isinstance(value, str):
-        return None
-    else:
-        for r in regexes:
-            value = re.sub(r, '', value)
-        return value
+        clean(to_clean, key, config)
+    return to_clean

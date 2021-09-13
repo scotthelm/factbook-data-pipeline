@@ -51,10 +51,10 @@ def register_pipelines() -> Dict[str, Pipeline]:
     data_processing_silver_pipeline = dps.create_pipeline()
     data_processing_pipeline = Pipeline(
         [
-            pipeline(
-                data_fetching_pipeline,
-                outputs=fetching_outputs()
-            ),
+            # pipeline(
+            #     data_fetching_pipeline,
+            #     outputs=fetching_outputs()
+            # ),
             pipeline(
                 data_processing_intermediate_pipeline,
                 inputs=fetching_outputs(),
