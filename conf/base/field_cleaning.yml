@@ -36,4 +36,6 @@ field_cleaning:
       right_field_name: "elevation_highest_point_m"
       left_join_character: " "
       right_join_character: ""
-  
+  elevation_highest_point_m:
+    regex_replacement:
+      - "[a-z A-Z,]"

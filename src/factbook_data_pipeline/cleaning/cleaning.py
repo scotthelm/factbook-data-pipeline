@@ -15,6 +15,8 @@ def clean(to_clean: pd.DataFrame, key: str, config: dict):
             if config.get('rename_to'):
                 to_clean[config['rename_to']] = series 
                 to_clean.drop(key, inplace=True, axis=1)
+            else:
+                to_clean[key] = series
         elif config_key == 'tokenize_and_split_fields':
             tokenize_and_split_fields(to_clean, key, config['tokenize_and_split_fields'])
 
@@ -28,4 +30,15 @@ def regex_replacement(value: str, config: dict) -> str:
         return value
 
 def tokenize_and_split_fields(to_clean: pd.DataFrame, key: str, config: dict):
-    to_clean
+    left_series = to_clean.apply(
+        lambda x: config['left_join_character'].join(x[key].split(' ')[: config['split_point']]),
+        axis=1
+    )
+    right_series = to_clean.apply(
+        lambda x: config['right_join_character'].join(x[key].split(' ')[config['split_point'] :]),
+        axis=1
+    )
+    to_clean[config['left_field_name']] = left_series
+    to_clean[config['right_field_name']] = right_series
+    to_clean.drop(key, axis=1, inplace=True)
+
