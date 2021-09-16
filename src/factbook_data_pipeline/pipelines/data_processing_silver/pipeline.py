@@ -10,5 +10,11 @@ def create_pipeline(**kwargs):
             inputs=['filtered_bronze_dataset', 'field_cleaning_dataset'],
             outputs='silver_csv_dataset',
             name='clean_columns'
-        )    
+        ),
+        node(
+            func=lambda x: x,
+            inputs='silver_csv_dataset',
+            outputs='silver_table_dataset',
+            name='import_silver_table_dataset',
+        ),
     ])

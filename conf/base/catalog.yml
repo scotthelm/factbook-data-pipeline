@@ -39,6 +39,13 @@ filtered_bronze_table_dataset:
   table_name: factbook_data_bronze
   save_args:
     if_exists: replace
-  # credentials: filtered_bronze_table_credentials
+  # credentials: dev_postgres_creds
   credentials:
     con: postgresql://postgres:docker@db:5432/factbook_data
+
+silver_table_dataset:
+  type: pandas.SQLTableDataSet
+  table_name: factbook_data_silver
+  save_args:
+    if_exists: replace
+  credentials: dev_postgres_creds
