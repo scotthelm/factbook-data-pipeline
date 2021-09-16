@@ -6,7 +6,7 @@
 #
 aiofiles==0.6.0
     # via kedro-viz
-aiohttp==3.7.4.post0
+aiohttp>=3.7.4
     # via gcsfs
 alabaster==0.7.12
     # via sphinx
@@ -525,7 +525,7 @@ sqlalchemy==1.4.23
     #   -r /usr/src/app/src/requirements.in
     #   ipython-sql
     #   kedro
-sqlparse==0.4.1
+sqlparse==0.4.2
     # via ipython-sql
 starlette==0.14.2
     # via fastapi

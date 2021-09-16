@@ -13,8 +13,8 @@ jupyter_client>=5.1, <7.0
 jupyterlab==0.31.1
 jupyter~=1.0
 kedro-viz
-kedro==0.17.5
-kedro[pandas]==0.17.5
+kedro==0.17.2
+kedro[pandas]==0.17.2
 matplotlib
 nbstripout==0.3.3
 psycopg2
