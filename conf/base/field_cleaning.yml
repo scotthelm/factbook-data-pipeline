@@ -39,3 +39,29 @@ field_cleaning:
   elevation_highest_point_m:
     regex_replacement:
       - "[a-z A-Z,]"
+  elevation_lowest_point:
+    regex_replacement:
+      - "[a-z A-Z,]"
+    rename_to: elevation_lowest_point_m
+  elevation_mean_elevation:
+    regex_replacement:
+      - "[a-z A-Z,]"
+    rename_to: elevation_mean_m
+  land_use_agricultural_land:
+    regex_replacement:
+      - \(.+\)
+      - ;.+
+      - "[a-z A-Z,%:]"
+    rename_to: agricultural_land_pct
+  land_use_agricultural_land_permanent_crops:
+    regex_replacement:
+      - \(.+\)
+      - ;.+
+      - "[a-z A-Z,%:]"
+    rename_to: agricultural_land_permanent_crops_pct
+  land_use_agricultural_land_permanent_pasture:
+    regex_replacement:
+      - \(.+\)
+      - ;.+
+      - "[a-z A-Z,%:]"
+    rename_to: agricultural_land_permanent_pasture_pct
