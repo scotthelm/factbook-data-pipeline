@@ -1,5 +1,6 @@
 from .nodes import(
-    clean_columns
+    clean_columns,
+    to_silver_table_dataset
 )
 from kedro.pipeline import Pipeline, node
 
@@ -12,7 +13,7 @@ def create_pipeline(**kwargs):
             name='clean_columns'
         ),
         node(
-            func=lambda x: x,
+            func=to_silver_table_dataset,
             inputs='silver_csv_dataset',
             outputs='silver_table_dataset',
             name='import_silver_table_dataset',

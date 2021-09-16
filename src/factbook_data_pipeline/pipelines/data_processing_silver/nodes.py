@@ -11,3 +11,6 @@ def clean_columns(
 
         clean(to_clean, key, config)
     return to_clean
+
+def to_silver_table_dataset(data: pd.DataFrame) -> pd.DataFrame:
+    return data
