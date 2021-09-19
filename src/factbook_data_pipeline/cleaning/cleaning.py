@@ -55,8 +55,6 @@ def create_dictionary(to_clean: pd.DataFrame, key: str, config: dict):
 def separate_into_dict(value: str, config: dict) -> str:
     values = value.split(config['item_separator'])
     items = [i.strip().split(" ") for i in values]
-    if value.startswith("Ngalop"):
-        print(items)
     items = [[" ".join(x[:-1]), "".join(x[-1:])] for x in items]
     items = [item for sublist in items for item in sublist]
     it = iter(items)
