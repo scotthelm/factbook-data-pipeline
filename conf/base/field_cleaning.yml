@@ -30,6 +30,8 @@ field_cleaning:
       - "[a-z A-Z,]"
     rename_to: coastline_km
   elevation_highest_point:
+    regex_replacement:
+      - \(.*\)
     tokenize_and_split_fields:
       split_point: -2
       left_field_name: "elevation_highest_point_name"
@@ -38,13 +40,20 @@ field_cleaning:
       right_join_character: ""
   elevation_highest_point_m:
     regex_replacement:
+      - \(.*\)
+      - ;.+
       - "[a-z A-Z,]"
   elevation_lowest_point:
     regex_replacement:
-      - "[a-z A-Z,]"
+      - \(.+\)
+      - ;.+
+      - "[a-z A-Z,'/]"
+      - --
     rename_to: elevation_lowest_point_m
   elevation_mean_elevation:
     regex_replacement:
+      - \(.+\)
+      - ;.+
       - "[a-z A-Z,]"
     rename_to: elevation_mean_m
   land_use_agricultural_land:
@@ -65,3 +74,45 @@ field_cleaning:
       - ;.+
       - "[a-z A-Z,%:]"
     rename_to: agricultural_land_permanent_pasture_pct
+  land_use_agricultural_land_arable_land:
+    regex_replacement:
+      - \(.+\)
+      - ;.+
+      - "[a-z A-Z,%:]"
+    rename_to: agricultural_land_arable_land_pct
+  land_use_agricultural_land_arable_land:
+    regex_replacement:
+      - \(.+\)
+      - ;.+
+      - "[a-z A-Z,%:]"
+    rename_to: agricultural_land_arable_land_pct
+  land_use_forest:
+    regex_replacement:
+      - \(.+\)
+      - ;.+
+      - "[a-z A-Z,%:]"
+    rename_to: land_use_forest_pct
+  land_use_other:
+    regex_replacement:
+      - \(.+\)
+      - ;.+
+      - "[a-z A-Z,%:]"
+    rename_to: land_use_other_pct
+  irrigated_land:
+    regex_replacement:
+      - \(.+\)
+      - ;.+
+      - "[a-z A-Z,%:]"
+    rename_to: irrigated_land_sq_km
+  population:
+    regex_replacement:
+      - \(.+\)
+      - ;.+
+      - "[a-z A-Z,%:]"
+  ethnic_groups:
+    regex_replacement:
+      - \(.*?\)
+      - "%"
+    create_dictionary:
+      item_separator: ","
+      
