@@ -15,6 +15,8 @@ def clean(to_clean: pd.DataFrame, key: str, config: dict):
             tokenize_and_split_fields(to_clean, key, config['tokenize_and_split_fields'])
         elif config_key == 'create_dictionary':
             create_dictionary(to_clean, key, config['create_dictionary'])
+        elif config_key == 'drop_column':
+            drop_column(to_clean, key, config)
 
 def regex_replacement(to_clean: pd.DataFrame, key: str, config: dict):
     series = to_clean.apply(
@@ -58,6 +60,9 @@ def create_dictionary(to_clean: pd.DataFrame, key: str, config: dict):
         axis=1
     )
     to_clean[key] = series
+
+def drop_column(to_clean: pd.DataFrame, key: str, config: dict):
+    to_clean.drop(key, axis=1, inplace=True)
 
 def separate_into_dict(value: str, config: dict) -> dict:
     if value == None:

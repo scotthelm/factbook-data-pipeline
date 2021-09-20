@@ -27,7 +27,7 @@ field_cleaning:
     regex_replacement:
       - \(.+\)
       - ;.+
-      - "[a-z A-Z,]"
+      - "[a-z A-Z,:-]"
     rename_to: coastline_km
   elevation_highest_point:
     regex_replacement:
@@ -319,3 +319,58 @@ field_cleaning:
     regex_replacement:
       - \(.+\)
       - "[^0-9.]"
+  total_fertility_rate:
+    regex_replacement:
+      - \(.+\)
+      - "[^0-9.]"
+    rename_to: children_per_woman
+  drinking_water_source_improved_urban:
+    regex_replacement:
+      - "[^0-9.]"
+    rename_to: drinking_water_source_improved_urban_pct
+  drinking_water_source_improved_rural:
+    regex_replacement:
+      - "[^0-9.]"
+    rename_to: drinking_water_source_improved_rural_pct
+  drinking_water_source_improved_total:
+    regex_replacement:
+      - "[^0-9.]"
+    rename_to: drinking_water_source_improved_total_pct
+  drinking_water_source_unimproved_urban:
+    regex_replacement:
+       - "[^0-9.]"
+    rename_to: drinking_water_source_unimproved_urban_pct
+  drinking_water_source_unimproved_rural:
+    regex_replacement:
+       - "[^0-9.]"
+    rename_to: drinking_water_source_unimproved_rural_pct
+  drinking_water_source_unimproved_total:
+    regex_replacement:
+       - "[^0-9.]"
+    rename_to: drinking_water_source_unimproved_total_pct
+  current_health_expenditure:
+    regex_replacement:
+      - \(.+\)
+      - "[^0-9.]"
+    rename_to: current_health_expenditure_pct_gdp
+  physicians_density:
+    regex_replacement:
+      - /.+
+      - "[^0-9.]"
+    rename_to: phsician_density_per_1k_people
+  land_use_agricultural_land.1:
+    drop_column:
+  land_use_agricultural_land_arable_land.1:
+    drop_column:
+  land_use_agricultural_land_permanent_crops.1:
+    drop_column:
+  land_use_agricultural_land_permanent_pasture.1:
+    drop_column:
+  land_use_forest.1:
+    drop_column:
+  land_use_other.1:
+    drop_column:
+  urbanization_urban_population.1:
+    drop_column:
+  urbanization_rate_of_urbanization.1:
+    drop_column:
