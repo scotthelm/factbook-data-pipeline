@@ -346,7 +346,8 @@ field_cleaning:
     rename_to: drinking_water_source_unimproved_rural_pct
   drinking_water_source_unimproved_total:
     regex_replacement:
-       - "[^0-9.]"
+      - \(.+\)
+      - "[^0-9.]"
     rename_to: drinking_water_source_unimproved_total_pct
   current_health_expenditure:
     regex_replacement:

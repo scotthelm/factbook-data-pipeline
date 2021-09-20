@@ -9,15 +9,10 @@ thismodule = sys.modules[__name__]
 # take in dataset, key, config
 def clean(to_clean: pd.DataFrame, key: str, config: dict):
     for config_key in config:
-        if config_key == 'regex_replacement':
-            regex_replacement(to_clean, key, config)
-        elif config_key == 'tokenize_and_split_fields':
-            tokenize_and_split_fields(to_clean, key, config['tokenize_and_split_fields'])
-        elif config_key == 'create_dictionary':
-            create_dictionary(to_clean, key, config['create_dictionary'])
-        elif config_key == 'drop_column':
-            drop_column(to_clean, key, config)
-
+        if config_key != 'rename_to':
+            getattr(thismodule, config_key)(to_clean, key, config)
+        # rename_to requires a series and is handled by regex_replace
+        
 def regex_replacement(to_clean: pd.DataFrame, key: str, config: dict):
     series = to_clean.apply(
         lambda x: regex_replacement_value(x[key], config),
@@ -39,9 +34,10 @@ def regex_replacement_value(value: str, config: dict) -> str:
         return value
 
 def tokenize_and_split_fields(to_clean: pd.DataFrame, key: str, config: dict):
-    sp = config['split_point']
-    ljc = config['left_join_character']
-    rjc = config['right_join_character']
+    token_config = config['tokenize_and_split_fields']
+    sp = token_config['split_point']
+    ljc = token_config['left_join_character']
+    rjc = token_config['right_join_character']
     left_series = to_clean.apply(
         lambda x: ljc.join(x[key].strip().split(' ')[: sp]) if type(x[key]) == str else x[key],
         axis=1
@@ -50,13 +46,14 @@ def tokenize_and_split_fields(to_clean: pd.DataFrame, key: str, config: dict):
         lambda x: rjc.join(re.sub('m m$', 'm', x[key]).strip().split(' ')[sp :]) if type(x[key]) == str else x[key],
         axis=1
     )
-    to_clean[config['left_field_name']] = left_series
-    to_clean[config['right_field_name']] = right_series
+    to_clean[token_config['left_field_name']] = left_series
+    to_clean[token_config['right_field_name']] = right_series
     to_clean.drop(key, axis=1, inplace=True)
 
 def create_dictionary(to_clean: pd.DataFrame, key: str, config: dict):
+    dict_config = config['create_dictionary']
     series = to_clean.apply(
-        lambda x: separate_into_dict(x[key], config),
+        lambda x: separate_into_dict(x[key], dict_config),
         axis=1
     )
     to_clean[key] = series
@@ -77,7 +74,6 @@ def separate_into_dict(value: str, config: dict) -> dict:
     else:
         return {}
 
-    
 def second_values_numeric(value: list):
     """ Return whether every second value is numeric
     """
