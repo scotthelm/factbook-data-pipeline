@@ -31,7 +31,9 @@ field_cleaning:
     rename_to: coastline_km
   elevation_highest_point:
     regex_replacement:
-      - \(.*\)
+      - \(.*?\)
+      - "[']"
+      - ;.+
     tokenize_and_split_fields:
       split_point: -2
       left_field_name: "elevation_highest_point_name"
@@ -40,16 +42,26 @@ field_cleaning:
       right_join_character: ""
   elevation_highest_point_m:
     regex_replacement:
-      - \(.*\)
-      - ;.+
-      - "[a-z A-Z,]"
+      - \(.*?\)
+      - "[a-z A-Z,/]"
   elevation_lowest_point:
     regex_replacement:
-      - \(.+\)
+      - \(.*?\)
+      - "[']"
       - ;.+
-      - "[a-z A-Z,'/]"
-      - --
-    rename_to: elevation_lowest_point_m
+    tokenize_and_split_fields:
+      split_point: -2
+      left_field_name: "elevation_lowest_point_name"
+      right_field_name: "elevation_lowest_point_m"
+      left_join_character: " "
+      right_join_character: ""
+  # elevation_lowest_point:
+  #   regex_replacement:
+  #     - \(.+\)
+  #     - ;.+
+  #     - "[a-z A-Z,'/]"
+  #     - --
+  #   rename_to: elevation_lowest_point_m
   elevation_mean_elevation:
     regex_replacement:
       - \(.+\)
@@ -115,4 +127,195 @@ field_cleaning:
       - "%"
     create_dictionary:
       item_separator: ","
-      
+  religions:
+    regex_replacement:
+      - \(.*?\)
+      - "%"
+    create_dictionary:
+      item_separator: ","
+  age_structure_0_14_years:
+    tokenize_and_split_fields:
+      split_point: 1
+      left_field_name: "people_age_0_14_pct"
+      right_field_name: "people_age_0_14_detail"
+      left_join_character: " "
+      right_join_character: " "
+  people_age_0_14_pct:
+    regex_replacement:
+      - '%'
+  people_age_0_14_detail:
+    regex_replacement:
+      - "[\\(\\),]"
+    create_dictionary:
+      item_separator: "/"
+  age_structure_15_24_years:
+    tokenize_and_split_fields:
+      split_point: 1
+      left_field_name: "people_age_15_24_pct"
+      right_field_name: "people_age_15_24_detail"
+      left_join_character: " "
+      right_join_character: " "
+  people_age_15_24_pct:
+    regex_replacement:
+      - '%'
+  people_age_15_24_detail:
+    regex_replacement:
+      - "[\\(\\),]"
+    create_dictionary:
+      item_separator: "/"
+  age_structure_25_54_years:
+    tokenize_and_split_fields:
+      split_point: 1
+      left_field_name: "people_age_25_54_pct"
+      right_field_name: "people_age_25_54_detail"
+      left_join_character: " "
+      right_join_character: " "
+  people_age_25_54_pct:
+    regex_replacement:
+      - '%'
+  people_age_25_54_detail:
+    regex_replacement:
+      - "[\\(\\),]"
+    create_dictionary:
+      item_separator: "/"
+  age_structure_55_64_years:
+    tokenize_and_split_fields:
+      split_point: 1
+      left_field_name: "people_age_55_64_pct"
+      right_field_name: "people_age_55_64_detail"
+      left_join_character: " "
+      right_join_character: " "
+  people_age_55_64_pct:
+    regex_replacement:
+      - '%'
+  people_age_55_64_detail:
+    regex_replacement:
+      - "[\\(\\),]"
+    create_dictionary:
+      item_separator: "/"
+  age_structure_65_years_and_over:
+    tokenize_and_split_fields:
+      split_point: 1
+      left_field_name: "people_age_65_plus_pct"
+      right_field_name: "people_age_65_plus_detail"
+      left_join_character: " "
+      right_join_character: " "
+  people_age_65_plus_pct:
+    regex_replacement:
+      - '%'
+  people_age_65_plus_detail:
+    regex_replacement:
+      - "[\\(\\),]"
+    create_dictionary:
+      item_separator: "/"
+  dependency_ratios_potential_support_ratio:
+    regex_replacement:
+      - \s\(.+\)
+  median_age_total:
+    regex_replacement:
+      - \syears
+      - \s\(.+\)
+  median_age_male:
+    regex_replacement:
+      - \syears
+      - \s\(.+\)
+  median_age_female:
+    regex_replacement:
+      - \syears
+      - \s\(.+\)
+  population_growth_rate:
+    regex_replacement:
+      - \s\(.+\)
+      - "[a-zA-Z %]"
+  birth_rate:
+    regex_replacement:
+      - /.+
+      - "[^0-9]"
+    rename_to: birth_rate_per_thousand
+  death_rate:
+    regex_replacement:
+      - /.+
+      - "[^0-9]"
+    rename_to: deaths_rate_per_thousand
+  net_migration_rate:
+    regex_replacement:
+      - /.+
+      - "[^0-9]"
+    rename_to: net_migration_rate_per_thousand
+  urbanization_urban_population:
+    regex_replacement:
+      - \(.+\)
+      - "[^0-9.]"
+    rename_to: urban_population_pct
+  urbanization_rate_of_urbanization:
+    regex_replacement:
+      - \(.+\)
+      - "[^0-9.]"
+    rename_to: urban_change_rate_pct
+  sex_ratio_at_birth:
+    regex_replacement:
+      - \(.+\)
+      - "[^0-9.]"
+    rename_to: sex_ratio_at_birth_m_to_f
+  sex_ratio_0_14_years:
+    regex_replacement:
+      - \(.+\)
+      - "[^0-9.]"
+    rename_to: sex_ratio_0_14_years_m_to_f
+  sex_ratio_15_24_years:
+    regex_replacement:
+      - \(.+\)
+      - "[^0-9.]"
+    rename_to: sex_ratio_15_24_years_m_to_f
+  sex_ratio_25_54_years:
+    regex_replacement:
+      - \(.+\)
+      - "[^0-9.]"
+    rename_to: sex_ratio_25_54_years_m_to_f
+  sex_ratio_55_64_years:
+    regex_replacement:
+      - \(.+\)
+      - "[^0-9.]"
+    rename_to: sex_ratio_55_64_years_m_to_f
+  sex_ratio_65_years_and_over:
+    regex_replacement:
+      - \(.+\)
+      - "[^0-9.]"
+    rename_to: sex_ratio_65_plus_years_m_to_f
+  sex_ratio_total_population:
+    regex_replacement:
+      - \(.+\)
+      - "[^0-9.]"
+    rename_to: sex_ratio_total_population_m_to_f
+  maternal_mortality_ratio:
+    regex_replacement:
+      - /.+
+      - "[^0-9.]"
+    rename_to: maternal_mortality_per_100k
+  infant_mortality_rate_total:
+    regex_replacement:
+      - /.+
+      - "[^0-9.]"
+    rename_to: infant_mortality_total_per_1k
+  infant_mortality_rate_male:
+    regex_replacement:
+      - /.+
+      - "[^0-9.]"
+    rename_to: infant_mortality_male_per_1k
+  infant_mortality_rate_female:
+    regex_replacement:
+      - /.+
+      - "[^0-9.]"
+    rename_to: infant_mortality_female_per_1k
+  life_expectancy_at_birth_total_population:
+    regex_replacement:
+      - "[^0-9.]"
+    rename_to: life_expectancy_at_birth_total
+  life_expectancy_at_birth_male:
+    regex_replacement:
+      - \(.+\)
+      - "[^0-9.]"
+  life_expectancy_at_birth_female:
+    regex_replacement:
+      - \(.+\)
+      - "[^0-9.]"
