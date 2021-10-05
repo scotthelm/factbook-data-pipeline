@@ -1,7 +1,6 @@
 from .nodes import(
     clean_columns,
     to_silver_table_dataset,
-    DTypedSqlTableDataSet
 )
 from kedro.pipeline import Pipeline, node
 
