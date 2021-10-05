@@ -2,6 +2,7 @@ import pandas as pd
 from factbook_data_pipeline.cleaning import clean
 
 
+
 def clean_columns(
     to_clean: pd.DataFrame,
     cleaning_config: dict

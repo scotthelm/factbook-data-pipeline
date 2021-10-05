@@ -44,6 +44,7 @@ filtered_bronze_table_dataset:
     con: postgresql://postgres:docker@db:5432/factbook_data
 
 silver_table_dataset:
+  #type: factbook_data_pipeline.pipelines.data_processing_silver.DTypedSqlTableDataSet
   type: pandas.SQLTableDataSet
   table_name: factbook_data_silver
   save_args:
