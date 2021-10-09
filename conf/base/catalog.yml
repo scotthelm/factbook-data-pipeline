@@ -44,9 +44,10 @@ filtered_bronze_table_dataset:
     con: postgresql://postgres:docker@db:5432/factbook_data
 
 silver_table_dataset:
-  #type: factbook_data_pipeline.pipelines.data_processing_silver.DTypedSqlTableDataSet
-  type: pandas.SQLTableDataSet
+  type: factbook_data_pipeline.utils.DTypedSqlTableDataSet
   table_name: factbook_data_silver
   save_args:
     if_exists: replace
+    dtype:
+      ethnic_groups: sqlalchemy.dialects.postgresql.JSONB
   credentials: dev_postgres_creds
