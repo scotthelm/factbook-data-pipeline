@@ -2,8 +2,6 @@ from .nodes import(
     clean_columns,
     to_silver_table_dataset,
 )
-from factbook_data_pipeline.utils import DTypedSqlTableDataSet
-
 from kedro.pipeline import Pipeline, node
 
 def create_pipeline(**kwargs):
@@ -16,7 +14,7 @@ def create_pipeline(**kwargs):
         ),
         node(
             func=to_silver_table_dataset,
-            inputs='silver_csv_dataset',
+            inputs=['silver_csv_dataset', 'catalog_config'],
             outputs='silver_table_dataset',
             name='import_silver_table_dataset',
         ),

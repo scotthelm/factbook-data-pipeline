@@ -114,6 +114,7 @@ def create_dictionary(to_clean: pd.DataFrame, key: str, config: dict):
         axis=1
     )
     to_clean[key] = series
+    
 
 def drop_column(to_clean: pd.DataFrame, key: str, config: dict):
     """
@@ -147,9 +148,9 @@ def separate_into_dict(value: str, config: dict) -> dict:
     items = [item for sublist in items for item in sublist]
     if second_values_numeric(items):
         it = iter(items)
-        return dict(zip(it, it))
+        return json.dumps(dict(zip(it, it)))
     else:
-        return {}
+        return json.dumps({})
 
 def second_values_numeric(value: list) -> bool:
     """ 

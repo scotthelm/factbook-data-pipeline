@@ -51,3 +51,7 @@ silver_table_dataset:
     dtype:
       ethnic_groups: sqlalchemy.dialects.postgresql.JSONB
   credentials: dev_postgres_creds
+
+catalog_config:
+  type: kedro.extras.datasets.yaml.YAMLDataSet
+  filepath: conf/base/catalog.yml
