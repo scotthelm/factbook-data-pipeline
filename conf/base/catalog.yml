@@ -50,6 +50,12 @@ silver_table_dataset:
     if_exists: replace
     dtype:
       ethnic_groups: sqlalchemy.dialects.postgresql.JSONB
+      religions: sqlalchemy.dialects.postgresql.JSONB
+      people_age_0_14_detail: sqlalchemy.dialects.postgresql.JSONB
+      people_age_15_24_detail: sqlalchemy.dialects.postgresql.JSONB
+      people_age_25_54_detail: sqlalchemy.dialects.postgresql.JSONB
+      people_age_55_64_detail: sqlalchemy.dialects.postgresql.JSONB
+      people_age_65_plus_detail: sqlalchemy.dialects.postgresql.JSONB
   credentials: dev_postgres_creds
 
 catalog_config:
