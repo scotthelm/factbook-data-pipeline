@@ -375,3 +375,5 @@ field_cleaning:
     drop_column:
   urbanization_rate_of_urbanization.1:
     drop_column:
+  population_distribution.1:
+    drop_column:
